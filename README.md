@@ -17,15 +17,15 @@
 ### Association
 - has_many :comments
 - has_many :items
-- has_many :credit
+- has_many :credits
 
 
 ## comments テーブル
-| Column    | Type       | Options     |
-| --------- | ---------- | ----------- |
-| text      | text       | NOT NULL    |
-| user_id   | references | key: true   |
-| item_id   | references | key: true   |
+| Column    | Type       | Options             |
+| --------- | ---------- | ------------------- |
+| text      | text       | NOT NULL            |
+| user      | references | foreign_key: true   |
+| item      | references | foreign_key: true   |
 
 ### Association
 - belongs_to :users
@@ -33,46 +33,46 @@
 
 
 ## items テーブル
-| Column               | Type               | Options     |
-| -------------------- | ------------------ | ----------- |
-| title                | string             | NOT NULL    |
-| catch_copy           | text               | NOT NULL    |
-| details_category_id  | integer            | NOT NULL    | 商品カテゴリー
-| details_status_id    | integer            | NOT NULL    | 商品詳細
-| delivery_burden_id   | integer            | NOT NULL    | 送料負担
-| delivery_source_id   | integer            | NOT NULL    | 発送元
-| delivery_day_id      | integer            | NOT NULL    | 発送日数
-| price                | integer            | NOT NULL    |
-| user_id              | references         | key: true   |
+| Column               | Type               | Options             |
+| -------------------- | ------------------ | ------------------- |
+| title                | string             | NOT NULL            |
+| catch_copy           | text               | NOT NULL            |
+| details_category_id  | integer            | NOT NULL            | 商品カテゴリー
+| details_status_id    | integer            | NOT NULL            | 商品詳細
+| delivery_burden_id   | integer            | NOT NULL            | 送料負担
+| delivery_source_id   | integer            | NOT NULL            | 発送元
+| delivery_day_id      | integer            | NOT NULL            | 発送日数
+| price                | integer            | NOT NULL            |
+| user                 | references         | foreign_key: true   |
 
 ### Association
-- belongs_to :users
+- belongs_to :user
 - has_many :comments
 - has_one :credit
 
 ## credit テーブル
 
-| Column            | Type               | Options     |
-| ----------------- | ------------------ | ----------- |
-| items_id          | references         | key: true   |
-| user_id           | references         | key: true   |
+| Column            | Type               | Options             |
+| ----------------- | ------------------ | ------------------- |
+| item              | references         | foreign_key: true   |
+| user              | references         | foreign_key: true   |
 
 ### Association
-belongs_to :users
-belongs_to :items
+belongs_to :user
+belongs_to :item
 has_one :street_address
 
 ## street_address テーブル
 
-| Column            | Type               | Options     |
-| ----------------- | ------------------ | ----------- |
-| postal_code       | string             | NOT NULL    |
-| country_id        | integer            | NOT NULL    |
-| city              | string             | NOT NULL    |
-| address           | string             | NOT NULL    |
-| building          | string             | ANY         |
-| phone_number      | string             | NOT NULL    |
-| credit_id         | references         | key: true   |
+| Column            | Type               | Options            |
+| ----------------- | ------------------ | ------------------ |
+| postal_code       | string             | NOT NULL           |
+| country_id        | integer            | NOT NULL           |
+| city              | string             | NOT NULL           |
+| address           | string             | NOT NULL           |
+| building          | string             | ANY                |
+| phone_number      | string             | NOT NULL           |
+| credit            | references         | foreign_key: true  |
 
 ### Association
 belongs_to :credit
