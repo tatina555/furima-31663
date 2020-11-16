@@ -28,8 +28,8 @@
 | item      | references | foreign_key: true   |
 
 ### Association
-- belongs_to :users
-- belongs_to items
+- belongs_to :user
+- belongs_to item
 
 
 ## items テーブル
