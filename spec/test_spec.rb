@@ -133,27 +133,5 @@ describe User, type: :model do
     it '全ての条件を満たす時' do
       expect(@user).to be_valid
     end
-
-    it 'メールアドレスは、@を含む必要があること' do
-      @user.email = 'aaa@aaa'
-      expect(@user).to be_valid
-    end
-
-    it 'パスワードは、6文字以上での入力が必須であること' do
-      @user.nickname = '111aaaaaaaaaaa'
-      expect(@user).to be_valid
-    end
-
-    it 'パスワードは、確認用を含めて2回入力すること' do
-      @user.password = '111aaa'
-      @user.password_confirmation = '111aaa'
-      expect(@user).to be_valid
-    end
-
-    it 'パスワードとパスワード（確認用）、値の一致が必須であること' do
-      @user.password = '111aaa'
-      @user.password_confirmation = '111aaa'
-      expect(@user).to be_valid
-    end
   end
 end
