@@ -20,10 +20,10 @@ describe User, type: :model do
 
     it 'emailが重複した場合登録できない' do
       @user.save
-      another_user = FactoryBot.build(:user)
-      another_user.email = @user.email
-      another_user.valid?
-      expect(another_user.errors.full_messages).to include('Email has already been taken')
+      another_users = FactoryBot.build(:user)
+      another_users.email = @user.email
+      another_users.valid?
+      expect(another_users.errors.full_messages).to include('Email has already been taken')
     end
 
     it 'メールアドレスは、@を含む必要があること' do
@@ -123,14 +123,12 @@ describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Birthday can't be blank")
     end
+  end
 
-    # 正常系
+  # 正常系
 
-    it 'nicknameが登録できる' do
-      expect(@user).to be_valid
-    end
-
-    it 'emailが登録できる' do
+  context '正常系' do
+    it '全ての条件を満たす時' do
       expect(@user).to be_valid
     end
 
@@ -139,16 +137,8 @@ describe User, type: :model do
       expect(@user).to be_valid
     end
 
-    it 'パスワードが必須であること' do
-      expect(@user).to be_valid
-    end
-
     it 'パスワードは、6文字以上での入力が必須であること' do
       @user.nickname = '111aaaaaaaaaaa'
-      expect(@user).to be_valid
-    end
-
-    it 'パスワードは、半角英数字混合での入力が必須であること数字のみ' do
       expect(@user).to be_valid
     end
 
@@ -161,42 +151,6 @@ describe User, type: :model do
     it 'パスワードとパスワード（確認用）、値の一致が必須であること' do
       @user.password = '111aaa'
       @user.password_confirmation = '111aaa'
-      expect(@user).to be_valid
-    end
-
-    it 'ユーザーラストネームは、名字と名前がそれぞれ必須であること' do
-      expect(@user).to be_valid
-    end
-
-    it 'ユーザーファーストネームは、名字と名前がそれぞれ必須であること' do
-      expect(@user).to be_valid
-    end
-
-    it 'ユーザーラストネームは、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
-      expect(@user).to be_valid
-    end
-
-    it 'ユーザーファーストネームは、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
-      expect(@user).to be_valid
-    end
-
-    it 'ユーザーラストネームのフリガナは、名字と名前でそれぞれ必須であること' do
-      expect(@user).to be_valid
-    end
-
-    it 'ユーザーファーストネームのフリガナは、名字と名前でそれぞれ必須であること' do
-      expect(@user).to be_valid
-    end
-
-    it 'ユーザーラストネームのフリガナは、全角（カタカナ）での入力が必須であること' do
-      expect(@user).to be_valid
-    end
-
-    it 'ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること' do
-      expect(@user).to be_valid
-    end
-
-    it '生年月日が必須であること' do
       expect(@user).to be_valid
     end
   end
