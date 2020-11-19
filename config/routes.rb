@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   root  to: 'furima#index'
 
   #root to: 'items#index'
-  resources :items, only: [:edit, :new, :show]
+  resources :items, only: [:edit, :new, :create]
 
 end

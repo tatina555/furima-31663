@@ -9,16 +9,20 @@ class Item < ApplicationRecord
   belongs_to :delivery_source
   belongs_to :delivery_day
 
-  validates :details_category_id,     presence: true
-  validates :details_status_id,       presence: true
-  validates :delivery_burden_id,      presence: true
-  validates :delivery_source_id,      presence: true
-  validates :delivery_day_id,         presence: true
+  with_options presence: true do
+    validates :image
+    validates :title
+    validates :catch_copy
+  end
 
-  validates :details_category_id, numericality: { other_than: 1 } 
-  validates :details_status_id, numericality: { other_than: 1 } 
-  validates :delivery_burden_id, numericality: { other_than: 1 } 
-  validates :delivery_source_id, numericality: { other_than: 1 } 
-  validates :delivery_day_id, numericality: { other_than: 1 } 
+  with_options presence: true, numericality: { other_than: 1 } do
+    validates :details_category_id
+    validates :details_status_id
+    validates :delivery_burden_id
+    validates :delivery_source_id
+    validates :delivery_day_id
+  end
 
+  validates :price, presence: true, format: { with: /\A[0-9]+\z/ }
+  validates_inclusion_of :price, in: 300..9_999_999
 end
