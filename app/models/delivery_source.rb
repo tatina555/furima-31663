@@ -10,7 +10,7 @@ class DeliverySource < ActiveHash::Base
     { id: 8, name: '中国' },
     { id: 9, name: '四国' },
     { id: 10, name: '九州' },
-    { id: 11, name: '沖縄' },
+    { id: 11, name: '沖縄' }
   ]
 
   include ActiveHash::Associations
