@@ -67,31 +67,31 @@ describe Item, type: :model do
       end
 
       it 'カテゴリーの情報が--の場合' do
-        @item.details_category_id = '1'
+        @item.details_category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Details category must be other than 1')
       end
 
       it '商品の状態についての情報が--の場合' do
-        @item.details_status_id = '1'
+        @item.details_status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Details status must be other than 1')
       end
 
       it '配送料の負担についての情報が--の場合' do
-        @item.delivery_burden_id = '1'
+        @item.delivery_burden_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Delivery burden must be other than 1')
       end
 
       it '発送元の地域についての情報が--の場合' do
-        @item.delivery_source_id = '1'
+        @item.delivery_source_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Delivery source must be other than 1')
       end
 
       it '発送までの日数についての情報が--の場合' do
-        @item.delivery_day_id = '1'
+        @item.delivery_day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Delivery day must be other than 1')
       end
@@ -103,13 +103,13 @@ describe Item, type: :model do
       end
 
       it '価格の範囲が、¥300以上あること' do
-        @item.price = '200'
+        @item.price = 200
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
 
       it '価格の範囲が、¥9,999,999以下あること' do
-        @item.price = '10000000'
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
