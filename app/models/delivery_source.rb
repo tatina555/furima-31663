@@ -1,11 +1,16 @@
 class DeliverySource < ActiveHash::Base
   self.data = [
     { id: 1, name: '--' },
-    { id: 2, name: 'カテゴ' },
-    { id: 3, name: '商品の状態' },
-    { id: 4, name: '配送料の負担' },
-    { id: 5, name: '発送元の地域' },
-    { id: 6, name: '発送前の日数' }
+    { id: 2, name: '北海道' },
+    { id: 3, name: '東北' },
+    { id: 4, name: '北陸' },
+    { id: 5, name: '関東' },
+    { id: 6, name: '中部' },
+    { id: 7, name: '関西' },
+    { id: 8, name: '中国' },
+    { id: 9, name: '四国' },
+    { id: 10, name: '九州' },
+    { id: 11, name: '沖縄' },
   ]
 
   include ActiveHash::Associations
