@@ -3,7 +3,6 @@ require 'rails_helper'
 describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
-    # @items.image = fixture_file_upload('app/assets/images/comment.png')
   end
 
   # 正常系
@@ -87,6 +86,7 @@ describe Item, type: :model do
       it '発送元の地域についての情報が--の場合' do
         @item.delivery_source_id = 1
         @item.valid?
+        binding.pry
         expect(@item.errors.full_messages).to include('Delivery source must be other than 1')
       end
 
