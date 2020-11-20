@@ -38,7 +38,7 @@
 | title                | string             | NOT NULL            |
 | catch_copy           | text               | NOT NULL            |
 | details_category_id  | integer            | NOT NULL            | 商品カテゴリー
-| details_status_id    | integer            | NOT NULL            | 商品詳細
+| details_status_id    | integer            | NOT NULL            | 商品状態
 | delivery_burden_id   | integer            | NOT NULL            | 送料負担
 | delivery_source_id   | integer            | NOT NULL            | 発送元
 | delivery_day_id      | integer            | NOT NULL            | 発送日数
