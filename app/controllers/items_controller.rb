@@ -62,6 +62,6 @@ class ItemsController < ApplicationController
   end
 
   def user_only_to_index
-    redirect_to root_path unless current_user.id == item.user.id
+    redirect_to root_path unless current_user.id == @item.user.id
   end
 end
