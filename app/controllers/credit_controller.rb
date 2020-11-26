@@ -1,4 +1,6 @@
 class CreditController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
+  
   def index
     @user_address = UserAddress.new
     @item = Item.find(params[:item_id])
