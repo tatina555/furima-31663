@@ -6,7 +6,7 @@ RSpec.describe UserAddress, type: :model do
       @useraddress = FactoryBot.build(:user_address)
     end
 
-    # 正常系
+    # 正常系です
 
     context '商品購入ができる時' do
       it '全ての条件を満たす時' do
