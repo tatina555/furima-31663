@@ -2,7 +2,7 @@ class CreditController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :item_find, only: [:index, :create]
   before_action :index_only_to_index, only: [:index]
-  
+
   def index
     @user_address = UserAddress.new
   end
@@ -10,7 +10,7 @@ class CreditController < ApplicationController
   def create
     @user_address = UserAddress.new(credit_params)
     if @user_address.valid?
-       pay_item
+      pay_item
       @user_address.save
       redirect_to root_path
     else
@@ -25,11 +25,11 @@ class CreditController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
-    amount: @item.price,
-    card: params[:token],
-    currency: 'jpy'
+      amount: @item.price,
+      card: params[:token],
+      currency: 'jpy'
     )
   end
 

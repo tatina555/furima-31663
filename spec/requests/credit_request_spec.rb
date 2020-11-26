@@ -1,5 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe "Credits", type: :request do
-
+RSpec.describe 'Credits', type: :request do
 end
