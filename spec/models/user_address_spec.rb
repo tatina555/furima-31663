@@ -78,6 +78,18 @@ RSpec.describe UserAddress, type: :model do
           expect(@useraddress.errors.full_messages).to include('Phone number 電話番号はハイフンなしの１１桁です')
         end
 
+        it 'user_idがなければ登録できないこと' do
+          @useraddress.user_id = ''
+          @useraddress.valid?
+          expect(@useraddress.errors.full_messages).to include("User can't be blank")
+        end
+
+        it 'item_idがなければ登録できないこと' do
+          @useraddress.item_id = ''
+          @useraddress.valid?
+          expect(@useraddress.errors.full_messages).to include("Item can't be blank")
+        end
+
         it 'クレジットカード情報は必須であり、正しいクレジットカードの情報で無いときは決済できないこと' do
           @useraddress.token = ''
           @useraddress.valid?

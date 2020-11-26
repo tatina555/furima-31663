@@ -9,6 +9,8 @@ class UserAddress
     validates :address
     validates :phone_number, format: { with: /\A\d{11}\z/, message: '電話番号はハイフンなしの１１桁です' }
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   def save
