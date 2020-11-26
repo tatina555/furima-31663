@@ -1,13 +1,13 @@
 class CreditController < ApplicationController
   before_action :authenticate_user!, only: [:index]
+  before_action :item_find, only: [:index, :create]
+  before_action :index_only_to_index, only: [:index]
   
   def index
     @user_address = UserAddress.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @user_address = UserAddress.new(credit_params)
     if @user_address.valid?
        pay_item
@@ -31,5 +31,13 @@ class CreditController < ApplicationController
     card: params[:token],
     currency: 'jpy'
     )
+  end
+
+  def item_find
+    @item = Item.find(params[:item_id])
+  end
+
+  def index_only_to_index
+    redirect_to root_path if current_user.id == @item.user.id
   end
 end
