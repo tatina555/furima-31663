@@ -58,8 +58,13 @@ RSpec.describe UserAddress, type: :model do
     it '電話番号にはハイフンは不要で、11桁以内であること' do
       @useraddress.phone_number = "080-1111-2222"
       @useraddress.valid?
-      binding.pry
       expect(@useraddress.errors.full_messages).to include("Phone number 電話番号はハイフンなしの１１桁です")
+    end
+
+    it 'クレジットカード情報は必須であり、正しいクレジットカードの情報で無いときは決済できないこと' do
+      @useraddress.token = ""
+      @useraddress.valid?
+      expect(@useraddress.errors.full_messages).to include("Token can't be blank")
     end
 
   end
