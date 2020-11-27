@@ -1,6 +1,7 @@
 class CreditController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :item_find, only: [:index, :create]
+  before_action :index_root_path_user, only: [:index]
   before_action :index_only_to_index, only: [:index]
 
   def index
@@ -22,6 +23,10 @@ class CreditController < ApplicationController
 
   def credit_params
     params.require(:user_address).permit(:postal_code, :country_id, :city, :address, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+  end
+
+  def index_root_path_user
+    redirect_to root_path unless @item.credit.nil?
   end
 
   def pay_item
